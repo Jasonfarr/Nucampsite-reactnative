@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { baseUrl } from '../../shared/baseURL';
+import { baseUrl } from '../../shared/baseUrl';
 
 export const fetchComments = createAsyncThunk(
     'comments/fetchComments',

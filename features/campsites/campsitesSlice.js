@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { baseUrl } from '../../shared/baseURL';
+import { baseUrl } from '../../shared/baseUrl';
 
 export const fetchCampsites = createAsyncThunk(
     'campsites/fetchCampsites',
@@ -13,6 +13,7 @@ export const fetchCampsites = createAsyncThunk(
         const data = await response.json();
         return data;
     }
+
 );
 
 const campsitesSlice = createSlice({
