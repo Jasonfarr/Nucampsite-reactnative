@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toggleFavorite } from '../features/favorites/favoritesSlice';
 import { useState } from 'react';
 import { Rating, Input } from 'react-native-elements';
+import addCommentReducer, { postComments } from '../features/comments/commentsSlice';
 
 const CampsiteInfoScreen = ({ route }) => {
     const { campsite } = route.params;
@@ -22,7 +23,7 @@ const CampsiteInfoScreen = ({ route }) => {
             text: text,
             campsiteId: campsite.id
         };
-        console.log(newComment);
+        dispatch(postComments(newComment))
         setShowModal(!showModal)
     };
 
@@ -70,7 +71,7 @@ const CampsiteInfoScreen = ({ route }) => {
                 <View style={styles.modal}>
                     <Rating
                         showRating={rating}
-                        startingValue={rating} // check on
+                        startingValue={rating}
                         imageSize={40}
                         onFinishRating={(rating) => setRating(rating)}
                         style={{ paddingVertical: 10 }}
@@ -79,14 +80,14 @@ const CampsiteInfoScreen = ({ route }) => {
                         placeholder='Author'
                         leftIcon={{ type: 'font-awesome', name: 'user-o' }}
                         leftIconContainerStyle={padding = 10}
-                        onChangeText={rating}
+                        onChangeText={(author) => setAuthor(author)}
                         value={author}
                     />
                     <Input
                         placeholder='Comment'
                         leftIcon={{ type: 'font-awesome', name: 'comment-o' }}
                         leftIconContainerStyle={padding = 10}
-                        onChangeText={rating}
+                        onChangeText={(text) => setText(text)}
                         value={text}
                     />
                     <View style={{ margin: 10 }}>
