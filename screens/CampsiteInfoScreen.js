@@ -5,6 +5,7 @@ import { toggleFavorite } from '../features/favorites/favoritesSlice';
 import { useState } from 'react';
 import { Rating, Input } from 'react-native-elements';
 import addCommentReducer, { postComments } from '../features/comments/commentsSlice';
+import * as Animatable from 'react-native-animatable';
 
 const CampsiteInfoScreen = ({ route }) => {
     const { campsite } = route.params;
@@ -44,7 +45,11 @@ const CampsiteInfoScreen = ({ route }) => {
     }
 
     return (
-        <>
+        <Animatable.View
+            animation='fadeInUp'
+            duration={2000}
+            delay={1000}
+        >
             <FlatList
                 data={comments.commentsArray.filter(
                     (comments) => comments.campsiteId === campsite.id
@@ -98,7 +103,7 @@ const CampsiteInfoScreen = ({ route }) => {
                     </View>
                 </View>
             </Modal>
-        </>
+        </Animatable.View>
     )
 };
 
